@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;/*存放结果*/
+        if (digits.empty()) return res;
+        string dict[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        res.push_back("");
+        for (int i=0;i<digits.size();i++){/*每个数字的循环*/
+            string str = dict[digits[i]-'2'];
+            int n = res.size();
+            for (int j=0;j<n;j++){/*遍历res中已存放的字母，在每个字母后面添加新的字母*/
+                string temp = res.front();
+                res.erase(res.begin());/*取出一个字符串删除在存储*/
+                for (int k =0;k<str.size();k++){
+                    res.push_back(temp+str[k]);
+                }
+            }
+        }
+    return res;
+    }
+};
