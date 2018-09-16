@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> mid;/*字符型*/
+        for (int i = 0; i < s.size(); i++){
+            if (s[i]=='(' || s[i]=='[' || s[i]=='{') mid.push(s[i]);
+            else{
+                if (mid.empty()) return false;
+                if (s[i]==')' && mid.top()!='(') return false;
+                if (s[i]==']' && mid.top()!='[') return false;
+                if (s[i]=='}' && mid.top()!='{') return false;
+                mid.pop();
+                }
+            }
+        return mid.empty();/*判断左边有没有多的符号*/
+    }
+};
