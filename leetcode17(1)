@@ -1,0 +1,41 @@
+class Solution {
+
+public:
+
+    vector<string> letterCombinations(string digits) {
+
+        vector<string> res;
+
+        string dict[] = {"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+        if (digits.empty()) return res;
+
+        letterCombinationDFS(digits,dict,0,"",res);
+
+        return res;
+
+    }
+
+    void letterCombinationDFS(string digits,string dict[],int level, string out, vector<string> &res){/*level：处理到第几个数字;out:存放临时结果*/
+
+        if(level==digits.size()) res.push_back(out);
+
+        else{
+
+            string str = dict[digits[level]-'2'];
+
+            for(int i =0;i<str.size();i++){
+
+                out.push_back(str[i]);
+
+                letterCombinationDFS(digits,dict,level+1,out,res);
+
+                out.pop_back();
+
+            }
+
+        }
+
+    }
+
+};
