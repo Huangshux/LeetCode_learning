@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        backtrade("",res,n,n);
+        return res;
+    }
+    void backtrade(string sublist, vector<string>& res, int left, int right){
+        if(left==0 && right==0) res.push_back(sublist);
+        if(left>0){/*如果左括号还有，那么就用掉一个左括号（字符串+“（”，函数中left-1）*/
+            backtrade(sublist+ '(', res,left-1,right);
+        }
+        if(left<right){/*(left>0){/*如果左括号剩余数量小于右括号剩余数量，那么就递归。递归关系： 用掉一个右括号**/
+            backtrade(sublist+')',res,left,right-1);
+        }
+    }
+};
