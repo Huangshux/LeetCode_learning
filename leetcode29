@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if((divisor==0)||(dividend==INT_MIN && divisor == -1)) return INT_MAX;/*考虑除数为0，以及商为2的31次方*/
+        
+        long long m = abs((long long)dividend), n = abs((long long)divisor), result = 0;/*强制类型转换:加括号*/
+        int sign = (dividend<0)^(divisor<0)?-1:1;
+        if(n==1) return sign>0?m:-m;
+        
+        while(m>=n){
+            long t = n, p = 1;/*int型:Time Limit Exceeded*/
+            if(m>(t<<1)){
+                t = t<<1;
+                p = p<<1;
+            }
+            result +=p;
+            m -= t;
+        }
+        return sign>0? result:-result;
+    }
+};
