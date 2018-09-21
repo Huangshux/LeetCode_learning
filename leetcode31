@@ -1,0 +1,27 @@
+class Solution:
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        size = len(nums)
+        if size == 0 or size == 1:
+            return
+        i = size - 2 
+        j = -1
+        while i >= 0:
+             if nums[i] < nums[i + 1]:
+                j = i + 1
+                while j < size:
+                    if nums[i] >= nums[j]:
+                            break
+                    j += 1
+                j -= 1
+                nums[i],nums[j] = nums[j],nums[i]
+                nums[i + 1:] = sorted(nums[i + 1:])
+                return
+             i -= 1
+        while j==-1:
+            nums.sort()
+            return
+           
